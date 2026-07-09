@@ -120,3 +120,6 @@ function loadTasks() {
         taskList.appendChild(task);
     });
 }
+
+// 🔥 ページ読み込み時にEXPバーを初期表示
+updateExpUI();
