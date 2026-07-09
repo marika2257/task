@@ -1,107 +1,43 @@
-// ▼タスク追加の仕組み（あづま用メモ）
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Azuma Schedule</title>
 
-const taskInput = document.getElementById("task-input");
-const addTaskBtn = document.getElementById("add-task");
-const taskList = document.getElementById("task-list");
-const messageBox = document.getElementById("message-box");
+    <!-- スマホ対応 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-// ② タスク読み込み（最初に必要）
-loadTasks();
+    <!-- CSS読み込み -->
+    <link rel="stylesheet" href="style.css">
+</head>
 
-// ボタン追加してそう
-addTaskBtn.addEventListener("click", () => {
-    const text = taskInput.value.trim();
-    if (text === "") return;
+<body>
 
-    const task = document.createElement("div");
-    task.textContent = text;
+    <h1>今日のタスク</h1>
 
-    task.addEventListener("click", () => {
-        task.remove();
-        showMessage("タスク完了、お疲れさま。");
+    <!-- タスク一覧 -->
+    <div id="task-list"></div>
 
-        addExp(30); // ← ここ追加！
-        saveTasks();
-    });
+    <!-- タスク追加フォーム -->
+    <input id="task-input" type="text" placeholder="タスクを追加">
+    <button id="add-task">追加</button>
 
-    taskList.appendChild(task);
-    taskInput.value = "";
+    <!-- メッセージ表示 -->
+    <div id="message-box"></div>
 
-    addExp(10); // ← ここ追加！
-    saveTasks();
-});
+    <!-- ペルソナ風ステータス表示 -->
+    <div id="status-area">
+        <div id="level-text">Lv 1</div>
+        <div id="exp-container">
+            <div id="exp-bar"></div>
+        </div>
+    </div>
 
-function showMessage(msg) {
-    messageBox.textContent = msg;
-}
+    <!-- ペルソナ風レベルアップカットイン -->
+    <div id="levelup-cutin">LEVEL UP!</div>
 
-function saveTasks() {
-    const tasks = [];
-    document.querySelectorAll("#task-list div").forEach(task => {
-        tasks.push(task.textContent);
-    });
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-}
+    <!-- JavaScript読み込み（必ず最後） -->
+    <script src="script.js"></script>
 
-function loadTasks() {
-    const saved = JSON.parse(localStorage.getItem("tasks") || "[]");
-    saved.forEach(text => {
-        const task = document.createElement("div");
-        task.textContent = text;
-
-        task.addEventListener("click", () => {
-            task.remove();
-            showMessage("タスク完了、お疲れさま。");
-            addExp(30); // ← ここも必要！
-            saveTasks();
-        });
-
-        taskList.appendChild(task);
-    });
-}
-
-// =========================
-// ペルソナ風 EXP / レベルシステム
-// =========================
-
-let player = {
-    level: 1,
-    exp: 0,
-    nextExp: 100,
-};
-
-function addExp(amount) {
-    player.exp += amount;
-    updateExpUI();
-
-    if (player.exp >= player.nextExp) {
-        levelUp();
-    }
-}
-
-function levelUp() {
-    player.level++;
-    player.exp = player.exp - player.nextExp;
-    player.nextExp = Math.floor(player.nextExp * 1.3);
-
-    showLevelUpCutin();
-    updateExpUI();
-}
-
-function updateExpUI() {
-    const expBar = document.getElementById("exp-bar");
-    const levelText = document.getElementById("level-text");
-
-    const percent = (player.exp / player.nextExp) * 100;
-    expBar.style.width = percent + "%";
-    levelText.textContent = "Lv " + player.level;
-}
-
-function showLevelUpCutin() {
-    const cutin = document.getElementById("levelup-cutin");
-    cutin.classList.add("show");
-
-    setTimeout(() => {
-        cutin.classList.remove("show");
-    }, 2000);
-}
+</body>
+</html>
