@@ -7,6 +7,12 @@ let player = {
     level: 1,     // 現在のレベル
     exp: 0,       // 現在の経験値
     nextExp: 100, // 次のレベルまでの必要EXP
+
+    // ▼ステータス（初期値）
+    str: 0, // ちから
+    int: 0, // ちしき
+    vit: 0, // たいりょく
+    luk: 0  // うん
 };
 
 // EXPを増やす関数（タスク追加・完了で呼ぶ）
@@ -49,6 +55,12 @@ function showLevelUpCutin() {
     }, 2000);
 }
 
+function updateStatsUI() {
+    document.getElementById("stat-str").textContent = player.str;
+    document.getElementById("stat-int").textContent = player.int;
+    document.getElementById("stat-vit").textContent = player.vit;
+    document.getElementById("stat-luk").textContent = player.luk;
+}
 
 /* ============================
    タスク管理システム
@@ -59,6 +71,7 @@ const taskInput = document.getElementById("task-input");
 const addTaskBtn = document.getElementById("add-task");
 const taskList = document.getElementById("task-list");
 const messageBox = document.getElementById("message-box");
+const categorySelect = document.getElementById("task-category");
 
 // ページ読み込み時に保存されたタスクを復元
 loadTasks();
@@ -68,8 +81,18 @@ addTaskBtn.addEventListener("click", () => {
     const text = taskInput.value.trim();
     if (text === "") return; // 空なら追加しない
 
+    const category = categorySelect.value; // ← カテゴリ取得
+
     const task = document.createElement("div");
     task.textContent = text;
+
+    // ▼カテゴリに応じてステータス加算
+    if (category === "str") player.str++;
+    if (category === "int") player.int++;
+    if (category === "vit") player.vit++;
+    if (category === "luk") player.luk++;
+
+    updateStatsUI(); // ← ステータス表示更新
 
     // タスクをクリックしたら完了扱い
     task.addEventListener("click", () => {
@@ -123,3 +146,5 @@ function loadTasks() {
 
 // 🔥 ページ読み込み時にEXPバーを初期表示
 updateExpUI();
+updateStatsUI();
+
