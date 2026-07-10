@@ -19,8 +19,17 @@
     <div id="task-list"></div>
 
     <!-- タスク追加フォーム -->
-    <input id="task-input" type="text" placeholder="タスクを追加">
-    <button id="add-task">追加</button>
+<input id="task-input" type="text" placeholder="タスクを追加">
+<select id="task-category"> ← これ
+<button id="add-task">追加</button>
+
+<!-- カテゴリ選択 -->
+<select id="task-category">
+    <option value="str">筋トレ（STR）</option>
+    <option value="int">勉強（INT）</option>
+    <option value="vit">運動（VIT）</option>
+    <option value="luk">ラッキー（LUK）</option>
+</select>
 
     <!-- メッセージ表示 -->
     <div id="message-box"></div>
@@ -32,6 +41,16 @@
             <div id="exp-bar"></div>
         </div>
     </div>
+
+<!-- ステータス表示エリア -->
+<div id="status-stats">
+    <h2>ステータス</h2>
+    <div>STR（ちから）: <span id="stat-str">0</span></div>
+    <div>INT（ちしき）: <span id="stat-int">0</span></div>
+    <div>VIT（たいりょく）: <span id="stat-vit">0</span></div>
+    <div>LUK（うん）: <span id="stat-luk">0</span></div>
+</div>
+
 
     <!-- ペルソナ風レベルアップカットイン -->
     <div id="levelup-cutin">LEVEL UP!</div>
