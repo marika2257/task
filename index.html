@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Azuma Schedule</title>
-
-    <!-- スマホ対応 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- CSS読み込み -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -19,22 +15,31 @@
     <div id="task-list"></div>
 
     <!-- タスク追加フォーム -->
-<input id="task-input" type="text" placeholder="タスクを追加">
-<select id="task-category"> ← これ
-<button id="add-task">追加</button>
+    <input id="task-input" type="text" placeholder="タスクを追加">
 
-<!-- カテゴリ選択 -->
-<select id="task-category">
-    <option value="str">筋トレ（STR）</option>
-    <option value="int">勉強（INT）</option>
-    <option value="vit">運動（VIT）</option>
-    <option value="luk">ラッキー（LUK）</option>
-</select>
-    
+    <!-- カテゴリ選択 -->
+    <select id="task-category">
+        <option value="str">筋トレ（STR）</option>
+        <option value="int">勉強（INT）</option>
+        <option value="vit">運動（VIT）</option>
+        <option value="luk">ラッキー（LUK）</option>
+    </select>
+
+    <button id="add-task">追加</button>
+
     <!-- メッセージ表示 -->
     <div id="message-box"></div>
 
-    <!-- ペルソナ風ステータス表示 -->
+    <!-- ステータス表示 -->
+    <div id="status-stats">
+        <h2>ステータス</h2>
+        <div>STR（ちから）: <span id="stat-str">0</span></div>
+        <div>INT（ちしき）: <span id="stat-int">0</span></div>
+        <div>VIT（たいりょく）: <span id="stat-vit">0</span></div>
+        <div>LUK（うん）: <span id="stat-luk">0</span></div>
+    </div>
+
+    <!-- EXPバー -->
     <div id="status-area">
         <div id="level-text">Lv 1</div>
         <div id="exp-container">
@@ -42,17 +47,7 @@
         </div>
     </div>
 
-<!-- ステータス表示エリア -->
-<div id="status-stats">
-    <h2>ステータス</h2>
-    <div>STR（ちから）: <span id="stat-str">0</span></div>
-    <div>INT（ちしき）: <span id="stat-int">0</span></div>
-    <div>VIT（たいりょく）: <span id="stat-vit">0</span></div>
-    <div>LUK（うん）: <span id="stat-luk">0</span></div>
-</div>
-
-
-    <!-- ペルソナ風レベルアップカットイン -->
+    <!-- レベルアップ演出 -->
     <div id="levelup-cutin">LEVEL UP!</div>
 
     <!-- JavaScript読み込み（必ず最後） -->
