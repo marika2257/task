@@ -235,7 +235,6 @@ localStorage.setItem("playerData", JSON.stringify(player));
 }
 
 
-
 // 保存されたタスクを読み込む
 function loadTasks() {
     const saved = JSON.parse(localStorage.getItem("tasks") || "[]");
