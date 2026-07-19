@@ -86,3 +86,31 @@ input {
 #levelup-cutin.show {
     opacity: 1;
 }
+
+/* デイリークエスト（赤黒ペルソナ風） */
+#daily-quests {
+    margin: 10px 0;
+}
+
+.daily-quest {
+    background: #111;
+    color: #fff;
+    border-left: 5px solid #e60012; /* ペルソナ赤 */
+    padding: 10px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.daily-quest:hover {
+    background: #222;
+    transform: translateX(5px);
+}
+
+.daily-quest.completed {
+    background: #e60012;
+    color: #fff;
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
